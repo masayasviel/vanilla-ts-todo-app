@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="./todo-item.ts"></script>
+    <script type="module" src="./category.ts"></script>
+    <script type="module" src="./task-form.ts"></script>
+    <script type="module" src="./parent-category.ts"></script>
+    <script type="module" src="./main.ts" defer></script>
+</head>
+<body>
+    <header>
+        <h1>ToDoリスト</h1>
+    </header>
+    <main>
+        <div class="task-form">
+            <div>
+                <label for="task-input">タスク</label>
+                <input type="text" id="task-input"/>
+            </div>
+            <button id="add-button">追加</button>
+        </div>
+
+        <div class="task-categories">
+            <div class="category-box">
+                <h2>未着手</h2>
+                <div
+                    id="not-started-yet"
+                    class="item-box"
+                >
+                </div>
+            </div>
+
+            <div class="category-box">
+                <h2>進行中</h2>
+                <div
+                    id="wip"
+                    class="item-box"
+                >
+                </div>
+            </div>
+
+            <div class="category-box">
+                <h2>完了</h2>
+                <div
+                    id="finish"
+                    class="item-box"
+                >
+                </div>
+            </div>
+        </div>
+        <dialog id="item-operate-dialog">
+            <form class="dialog-form">
+                どうする？
+                <div class="dialog-operate">
+                    <div>
+                        <label for="select-new-state">状態:</label>
+                        <select id="select-new-state">
+                            <option value="not-started-yet">未着手</option>
+                            <option value="wip">進行中</option>
+                            <option value="finish">完了</option>
+                        </select>
+                    </div>
+                    <div class="dialog-buttons">
+                        <button
+                                value="cancel"
+                                formmethod="dialog"
+                        >キャンセル</button>
+                        <button id="change-button">変更</button>
+                        <button id="remove-button">削除</button>
+                    </div>
+                </div>
+            </form>
+        </dialog>
+    </main>
+</body>
+</html>
