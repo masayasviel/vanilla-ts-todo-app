@@ -1,0 +1,3 @@
+var e=globalThis,r={},n={},t=e.parcelRequire0d70;null==t&&((t=function(e){if(e in r)return r[e].exports;if(e in n){var t=n[e];delete n[e];var a={id:e,exports:{}};return r[e]=a,t.call(a.exports,a,a.exports),a.exports}var o=Error("Cannot find module '"+e+"'");throw o.code="MODULE_NOT_FOUND",o}).register=function(e,r){n[e]=r},e.parcelRequire0d70=t),t.register;var a=t("9BWqW"),o=t("jasSx");window.addEventListener("load",function(){let e=new a.TaskForm,r=new o.ParentCategory;e.registerAddTaskButtonClickEventFunc(e=>{r.appendNewTask(e)})});//# sourceMappingURL=index.27f4a406.js.map
+
+//# sourceMappingURL=index.27f4a406.js.map
