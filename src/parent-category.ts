@@ -1,15 +1,24 @@
 import { Category } from './category';
 import { BoxIdLiteral, TodoItem } from './todo-item';
 
+/** カテゴリ全体を統括 */
 export class ParentCategory {
+  /** ダイアログ */
   private dialog: HTMLDialogElement;
+  /** [ダイアログ]セレクトボックス */
   private selectInput: HTMLSelectElement;
+  /** [ダイアログ]変更ボタン */
   private changeButton: HTMLButtonElement;
+  /** [ダイアログ]削除ボタン */
   private removeButton: HTMLButtonElement;
+  /** 未着手カテゴリ */
   private notStartedYetCategory: Category;
+  /** 進行中カテゴリ */
   private wipCategory: Category;
+  /** 完了カテゴリ */
   private finishCategory: Category;
 
+  /** 現在選択中タスク */
   private currentSelectItem: TodoItem | null = null;
 
   constructor() {
@@ -53,6 +62,11 @@ export class ParentCategory {
     })
   }
 
+  /**
+   * 新アイテム追加
+   * @param taskName タスク名
+   * @note 新アイテムの追加は仕様上未着手にしか入らない
+   */
   appendNewTask(taskName: string): void {
     const todoItem = new TodoItem(
       taskName,
@@ -65,12 +79,16 @@ export class ParentCategory {
     this.notStartedYetCategory.appendTodo(todoItem);
   }
 
+  /**
+   * アイテムの移動
+   * @param category 移動先カテゴリ
+   */
   private moveItem(category: BoxIdLiteral): void {
     if (this.currentSelectItem === null) {
       throw Error('[ParentCategory.moveItem] this.currentSelectItem = null');
     }
 
-    this.deleteItemInCategory();
+    this.removeItemInCategory();
 
     switch (category) {
       case 'not-started-yet':
@@ -87,19 +105,21 @@ export class ParentCategory {
     this.currentSelectItem = null;
   }
 
+  /** タスクの削除 */
   private deleteItem(): void {
     if (this.currentSelectItem === null) {
       throw Error('[ParentCategory.deleteItem] this.currentSelectItem = null');
     }
 
     this.currentSelectItem.remove();
-    this.deleteItemInCategory();
+    this.removeItemInCategory();
     this.currentSelectItem = null;
   }
 
-  private deleteItemInCategory(): void {
+  /** カテゴリからタスクを取り除く */
+  private removeItemInCategory(): void {
     if (this.currentSelectItem === null) {
-      throw Error('[ParentCategory.deleteItemInCategory] this.currentSelectItem = null');
+      throw Error('[ParentCategory.removeItemInCategory] this.currentSelectItem = null');
     }
 
     switch (this.currentSelectItem.currentGroup) {
