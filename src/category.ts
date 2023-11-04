@@ -3,11 +3,9 @@ import { TodoItem, BoxIdLiteral } from './todo-item';
 export class Category {
   children: TodoItem[] = [];
   private categoryBox: HTMLDivElement;
-  private readonly boxId: BoxIdLiteral;
 
-  constructor(boxId: BoxIdLiteral) {
+  constructor(private readonly boxId: BoxIdLiteral) {
     this.categoryBox = document.querySelector(`#${boxId}`)!;
-    this.boxId = boxId;
   }
 
   appendTodo(item: TodoItem): void {

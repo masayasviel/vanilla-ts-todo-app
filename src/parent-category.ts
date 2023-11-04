@@ -28,13 +28,9 @@ export class ParentCategory {
 
       switch (this.dialog.returnValue) {
         case 'not-started-yet':
-          this.moveItem('not-started-yet');
-          break;
         case 'wip':
-          this.moveItem('wip');
-          break;
         case 'finish':
-          this.moveItem('finish');
+          this.moveItem(this.dialog.returnValue);
           break;
         case 'remove':
           this.deleteItem();
